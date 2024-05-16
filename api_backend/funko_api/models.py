@@ -11,6 +11,7 @@ class Funko(models.Model):
     def __str__(self):
         return f'{self.number} - {self.name}'
 
+
 class User(models.Model):
     name = models.CharField(max_length=128)
     funkos = models.ManyToManyField(Funko, blank=True)
