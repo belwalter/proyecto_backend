@@ -1,6 +1,6 @@
 from django import forms
 
-from funko_api.models import Funko
+from funko_api.models import Funko, User
 
 # def validate_number(value):
 #     if not isinstance(value, int):
@@ -26,4 +26,13 @@ class FunkoForm(forms.ModelForm):
             'number',
             'collection',
             'is_backlight',
+        ]
+
+class UserForm(forms.ModelForm):
+    
+    class Meta:
+        model = User
+        fields = [
+            'name',
+            'funkos',
         ]
