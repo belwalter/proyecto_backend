@@ -1,5 +1,7 @@
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 
 from funko_api.forms import FunkoForm
 from funko_api.models import Funko
@@ -28,21 +30,27 @@ def users_rest(request):
     return JsonResponse("Ok", safe=False)
 
 
-def add_funko_view(request):
+# def add_funko_view(request):
     
-    if request.method == 'POST':
-        funko_form = FunkoForm(request.POST)
-        if funko_form.is_valid():
-            funko = funko_form.save()
-            return HttpResponseRedirect('/')
-    if request.method == 'GET':
-        funko_form = FunkoForm()
-        csrf_token = get_token(request)
-        html_form = f"""
-            <form method="post">
-            <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}">
-                {funko_form.as_p()}
-                <button type="submit">Submit</button>
-            </form>
-        """
-        return HttpResponse(html_form)
+#     if request.method == 'POST':
+#         funko_form = FunkoForm(request.POST)
+#         if funko_form.is_valid():
+#             funko = funko_form.save()
+#             return redirect('funkos')
+#     if request.method == 'GET':
+#         funko_form = FunkoForm()
+#         csrf_token = get_token(request)
+#         html_form = f"""
+#             <form method="post">
+#             <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}">
+#                 {funko_form.as_p()}
+#                 <button type="submit">Submit</button>
+#             </form>
+#         """
+#         return HttpResponse(html_form)
+
+
+class NewFunkoView(CreateView):
+    form_class = FunkoForm
+    template_name = 'form_funko.html'
+    success_url = '/index_funkos/'

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funko Add</title>
+  <!-- Enlace al archivo de estilos de Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-blue-500 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-white font-bold text-xl">Funko Add</h1>
+      <ul class="flex space-x-4">
+        <li><a href="#" class="text-white hover:text-gray-200">Inicio</a></li>
+        <li><a href="#" class="text-white hover:text-gray-200">Acerca de</a></li>
+        <li><a href="#" class="text-white hover:text-gray-200">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="max-w-lg mx-auto mt-10">
+    <h2 class="text-2xl font-bold mb-5">Add New Funko</h2>
+    <form method="post" class="bg-white p-6 rounded-lg shadow-lg">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Submit
+        </button>
+    </form>
+</div>
+</body>
+
+</html>

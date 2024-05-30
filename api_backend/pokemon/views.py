@@ -14,3 +14,9 @@ def get_all_pokemons():
 def pokemons_rest(request):
     pokemons = get_all_pokemons()
     return JsonResponse(pokemons, safe=False)
+
+
+def index_pok(request):
+    pokemons = get_all_pokemons()
+    print(pokemons)
+    return render(request, 'index_pok.html', {'pokemons': pokemons})
